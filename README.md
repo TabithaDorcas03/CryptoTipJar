@@ -1,66 +1,34 @@
-## Foundry
+# CryptoTipJar
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+CryptoTipJar is a simple Ethereum smart contract that allows users to send ETH tips to the contract owner.
 
-Foundry consists of:
+## Features
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- Users can send ETH tips
+- Each user's total tips are recorded
+- Anyone can view the contract balance
+- Only the contract owner can withdraw funds
+- Emits events when tips are received and funds are withdrawn
 
-## Documentation
+## Smart Contract
 
-https://book.getfoundry.sh/
+The main contract is located in:
 
-## Usage
+`src/CryptoTipJar.sol`
 
-### Build
+## Testing
 
-```shell
-$ forge build
-```
+The project contains tests covering:
 
-### Test
+- Owner initialization
+- Sending tips
+- Multiple users sending tips
+- Rejecting zero-value tips
+- Preventing non-owners from withdrawing
+- Owner withdrawals
+- Preventing withdrawals when the balance is zero
 
-```shell
-$ forge test
-```
+Run the tests with:
 
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+```bash
+forge test
